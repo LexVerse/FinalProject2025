@@ -4,10 +4,29 @@ It should contain:
 -Register page
 
 -Home page
-    -Dropdown menu
-        -Log out
-        -Cart
-        -Checkout
+    -Dropdown menu(Header)
+        -Homepage link
+        -Log out button
+        -Cart button
+        -Checkout button(within cart page)
+        -Contact Us
 
-    -Homepage link
-    -
+    -Searchbar
+    -Categories
+        -Fats and Oils
+        -Vegetables
+        -Food Additives
+        -Beverages
+        -Snacks
+        -Cleaning
+        -Stationery
+        -Beauty & Cosmetics
+        -Electronics
+        -Baby & Kids
+    
+    -Products
+    -Footer
+        -About Us
+        -Contact Us
+        -Terms and Conditions
+        -Follow us on Facebook, Twitter(X), IG etc
