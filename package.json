@@ -1,0 +1,24 @@
+{
+  "name": "finalproject2025",
+  "version": "1.0.0",
+  "description": "This is my final year project about Silver Springs Supermarket Online Shopping System.\r It should contain:\r -Login page\r -Register page",
+  "homepage": "https://github.com/LexVerse/FinalProject2025#readme",
+  "bugs": {
+    "url": "https://github.com/LexVerse/FinalProject2025/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LexVerse/FinalProject2025.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "webPreferences": {
+    "nodeIntegration": true,
+    "contextIsolation": false
+}
+}
