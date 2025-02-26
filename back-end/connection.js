@@ -1,5 +1,3 @@
-//var mysql = require('mysql2');
-
 import mysql from 'mysql2';
 
 var con = mysql.createConnection({
@@ -15,10 +13,3 @@ con.connect(function(err) {
   });
 
 export var con;
-
-/*
-define(function(module) {
-  module.exports = con;
-  
-});
-*/

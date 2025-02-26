@@ -1,5 +1,3 @@
-//var connect = require('../back-end/server.js');
-
 import { con } from './connection.js';
 
 export function register(fname, lname, email, password, address, callback) {
@@ -30,8 +28,4 @@ export function register(fname, lname, email, password, address, callback) {
         });
     });
 };
-/*
-define(function(module) {
-    module.exports = register;
-});
-*/
+
