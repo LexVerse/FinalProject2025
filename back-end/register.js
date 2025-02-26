@@ -1,28 +1,35 @@
 //var connect = require('../back-end/server.js');
 
-import { con } from './server.js';
+import { con } from './connection.js';
 
-export function register(fname, lname, email, password, address) {
-    
+export function register(fname, lname, email, password, address, callback) {
     con.connect(function(err) {
-        if (err) throw err;
+        if (err) {
+            console.error('Database connection failed: ' + err.stack);
+            callback(err);
+            return;
+        }
 
-        var fname = document.getElementById("fname").value;
-        var lname = document.getElementById("lname").value;
-        var email = document.getElementById("email").value;
-        var password = document.getElementById("password").value;
-        var address = document.getElementById("address").value;
+        var sql = "INSERT INTO users (fname, lname, email, password, address) VALUES (?, ?, ?, ?, ?)";
+        con.query(sql, [fname, lname, email, password, address], function (err, result) {
+            if (err) {
+                console.error('Error executing query: ' + err.stack);
+                callback(err);
+                return;
+            }
+            console.log(result.affectedRows + " record(s) updated");
+            callback(null, result);
+        });
 
-        var sql = "INSERT INTO users (fname, lname, email, password, address) VALUES ('" + fname + "', '" + lname + "', '" + email + "', '" + password + "', '" + address + "')";
-        con.query(sql, function (err, result) {
-        if (err) throw err;
-        console.log(result.affectedRows + " record(s) updated");
+        con.end(function(err) {
+            if (err) {
+                console.error('Error closing connection: ' + err.stack);
+                return;
+            }
+            console.log('Database connection closed.');
         });
     });
 };
-
-register("fname", "lname", "email", "password", "address");
-
 /*
 define(function(module) {
     module.exports = register;

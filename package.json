@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/package",
   "name": "finalproject2025",
   "version": "1.0.0",
   "description": "This is my final year project about Silver Springs Supermarket Online Shopping System.\r It should contain:\r -Login page\r -Register page",
