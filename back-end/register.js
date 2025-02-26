@@ -21,6 +21,8 @@ export function register(fname, lname, email, password, address) {
     });
 };
 
+register("fname", "lname", "email", "password", "address");
+
 /*
 define(function(module) {
     module.exports = register;
