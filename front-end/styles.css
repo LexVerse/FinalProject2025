@@ -10,3 +10,12 @@
   .nav-item.dropdown:hover .dropdown-menu {
     display: block;
   }
+  
+/* Custom styles for the search bar */
+.search-bar {
+    width: 100%; /* Full width */
+    max-width: 600px; /* Maximum width */
+    height: 40px; /* Height of the search bar */
+    font-size: 1.25rem; /* Font size */
+    padding: 10px; /* Padding */
+}
