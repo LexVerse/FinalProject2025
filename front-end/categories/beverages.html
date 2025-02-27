@@ -1,4 +1,4 @@
-<!doctype html>
+.<!doctype html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -13,27 +13,64 @@
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">SSOSS</a>
+        <a class="navbar-brand" href="#">Silver Springs Supermarket</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
+            <form class="d-flex mx-auto">
+            <input class="form-control me-2 flex-grow-1 search-bar" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-light" type="submit">Search</button>
+            </form>
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item dropdown">
+                <button class="nav-link dropdown-toggle btn btn-link" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Categories
+                </button>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <li><a class="dropdown-item" href="../categories/fats_and_oils.html">Fats and Oils</a></li>
+                      <li><a class="dropdown-item" href="../categories/vegetables.html">Vegetables</a></li>
+                      <li><a class="dropdown-item" href="../categories/food_additives.html">Food Additives</a></li>
+                    </div>
+                    <div class="col-md-3">
+                      <li><a class="dropdown-item" href="../categories/beverages.html">Beverages</a></li>
+                      <li><a class="dropdown-item" href="../categories/snacks.html">Snacks</a></li>
+                      <li><a class="dropdown-item" href="../categories/cleaning.html">Cleaning</a></li>
+                    </div>
+                    <div class="col-md-3">
+                      <li><a class="dropdown-item" href="../categories/stationery.html">Stationery</a></li>
+                      <li><a class="dropdown-item" href="../categories/beauty_and_cosmetics.html">Beauty & Cosmetics</a></li>
+                      <li><a class="dropdown-item" href="../categories/electronics.html">Electronics</a></li>
+                    </div>
+                    <div class="col-md-3">
+                      <li><a class="dropdown-item" href="../categories/baby_and_kids.html">Baby & Kids</a></li>
+                    </div>
+                  </div>
+                </div>
+              </ul>
+            </li>
+          </ul>
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="../home.html">Home</a>
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Shop</a>
+              <a class="nav-link" href="../shop.html">Shop</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="../about_us.html">About Us</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+              <a class="nav-link" href="../contact.html">Contact</a>
             </li>
+          </ul>
+          <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" href="#">Cart</a>
+              <a class="nav-link" href="../cart.html">Cart</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Log Out</a>
