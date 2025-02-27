@@ -51,6 +51,7 @@ exec('server.bat', (error, stdout, stderr) => {
     console.log(`Batch file stdout: ${stdout}`);
 });
 
+/*
 // Example of closing the connection
 closeConnection((err) => {
     if (err) {
@@ -59,3 +60,4 @@ closeConnection((err) => {
         console.log('Connection closed successfully.');
     }
 });
+*/
