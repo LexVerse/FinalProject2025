@@ -2,6 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import { register } from './register.js';
 import { login } from './login.js'; // Import the login function
+import { exec } from 'child_process'; // Import the exec function from child_process
+import { closeConnection } from './connection.js'; // Import the closeConnection function
+
 
 const app = express();
 app.use(cors()); // Enable CORS
@@ -33,4 +36,26 @@ app.post('/login', (req, res) => {
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
+});
+
+// Run the batch file
+exec('server.bat', (error, stdout, stderr) => {
+    if (error) {
+        console.error(`Error executing batch file: ${error.message}`);
+        return;
+    }
+    if (stderr) {
+        console.error(`Batch file stderr: ${stderr}`);
+        return;
+    }
+    console.log(`Batch file stdout: ${stdout}`);
+});
+
+// Example of closing the connection
+closeConnection((err) => {
+    if (err) {
+        console.error('Error closing the connection:', err);
+    } else {
+        console.log('Connection closed successfully.');
+    }
 });

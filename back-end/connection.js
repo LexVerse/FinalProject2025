@@ -10,6 +10,18 @@ var con = mysql.createConnection({
 con.connect(function(err) {
     if (err) throw err;
     console.log("Connected!");    
-  });
+});
 
-export var con;
+export function closeConnection(callback) {
+    con.end(function(err) {
+        if (err) {
+            console.error('Error closing connection: ' + err.stack);
+            if (callback) callback(err);
+            return;
+        }
+        console.log('Database connection closed.');
+        if (callback) callback(null);
+    });
+}
+
+export { con };

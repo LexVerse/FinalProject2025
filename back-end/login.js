@@ -22,6 +22,7 @@ export function login(email, password, callback) {
             }
         });
 
+        /*
         con.end(function(err) {
             if (err) {
                 console.error('Error closing connection: ' + err.stack);
@@ -29,5 +30,6 @@ export function login(email, password, callback) {
             }
             console.log('Database connection closed.');
         });
+        */
     });
 };
