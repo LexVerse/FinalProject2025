@@ -14,7 +14,7 @@
           <div class="card shadow">
             <div class="card-body">
               <h3 class="card-title text-center mb-4">Login</h3>
-              <form>
+              <form id="loginForm">
                 <div class="mb-3">
                   <label for="email" class="form-label">Email address</label>
                   <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
@@ -44,5 +44,31 @@
     </div>
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+      document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        fetch('http://localhost:3000/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email, password })
+        })
+        .then(response => {
+          if (response.status === 200) {
+            window.location.href = 'home.html'; // Redirect to home.html on successful login
+          } else {
+            alert('Invalid email or password');
+          }
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+      });
+    </script>
   </body>
 </html>

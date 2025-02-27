@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { register } from './register.js';
+import { login } from './login.js'; // Import the login function
 
 const app = express();
 app.use(cors()); // Enable CORS
@@ -13,6 +14,19 @@ app.post('/register', (req, res) => {
             res.status(500).send('Error registering user');
         } else {
             res.status(200).send('User registered successfully');
+        }
+    });
+});
+
+app.post('/login', (req, res) => {
+    const { email, password } = req.body;
+    login(email, password, (err, user) => {
+        if (err) {
+            res.status(500).send('Error logging in');
+        } else if (!user) {
+            res.status(401).send('Invalid email or password');
+        } else {
+            res.status(200).send('Login successful');
         }
     });
 });
