@@ -83,41 +83,50 @@
     <!-- Shop Section -->
     <section class="py-5">
       <div class="container">
-        <h2 class="mb-4">Shop</h2>
+        <h1 class="mb-4">Shop</h1>
+      </div>
+      <div class="container">
+        <h2 class="mb-4">Fats and Oils</h2>
         <div class="row row-cols-1 row-cols-md-3 g-4">
           <div class="col">
             <div class="card h-100">
-              <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product 1">
+              <img src="../resources/fats_and_oils/alpa_cooking_fat.avif" class="card-img-top" alt="Alpa Cooking Fat">
               <div class="card-body">
-                <h5 class="card-title">Product 1</h5>
-                <p class="card-text">A brief description of Product 1.</p>
+                <h5 class="card-title">Alpa Cooking Fat</h5>
+                <p class="card-text">Alpa is a yellow cooking fat manufactured from pure refined natural vegetable palm oil and is an economical choice of deep frying fat.</p>
+                <p class="card-text"><strong>Price: $5.99</strong></p>
               </div>
               <div class="card-footer">
-                <a href="#" class="btn btn-primary">Buy Now</a>
+                <input type="number" id="quantity-alpa-cooking-fat" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
+                <a href="#" class="btn btn-primary" onclick="addToCart('Alpa Cooking Fat', 'Alpa is a yellow cooking fat manufactured from pure refined natural vegetable palm oil and is an economical choice of deep frying fat.', 5.99, document.getElementById('quantity-alpa-cooking-fat').value)">Add to Cart</a>
               </div>
             </div>
           </div>
           <div class="col">
             <div class="card h-100">
-              <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product 2">
+              <img src="../resources/fats_and_oils/kasuku_cooking_fat.avif" class="card-img-top" alt="Kasuku Cooking Fat">
               <div class="card-body">
-                <h5 class="card-title">Product 2</h5>
-                <p class="card-text">A brief description of Product 2.</p>
+                <h5 class="card-title">Kasuku Cooking Fat</h5>
+                <p class="card-text">Kasuku, East Africa’s most popular cooking fat, is a pure white cooking fat manufactured using refined natural vegetable palm oil. You will enjoy cooking with Kasuku’s soft and smooth texture.</p>
+                <p class="card-text"><strong>Price: $10.99</strong></p>
               </div>
               <div class="card-footer">
-                <a href="#" class="btn btn-primary">Buy Now</a>
+                <input type="number" id="quantity-kasuku-cooking-fat" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
+                <a href="#" class="btn btn-primary" onclick="addToCart('Kasuku Cooking Fat', 'Kasuku, East Africa’s most popular cooking fat, is a pure white cooking fat manufactured using refined natural vegetable palm oil. You will enjoy cooking with Kasuku’s soft and smooth texture.', 10.99, document.getElementById('quantity-kasuku-cooking-fat').value)">Add to Cart</a>
               </div>
             </div>
           </div>
           <div class="col">
             <div class="card h-100">
-              <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product 3">
+              <img src="../resources/fats_and_oils/tilly_cooking_fat.avif" class="card-img-top" alt="Tilly Cooking Fat">
               <div class="card-body">
-                <h5 class="card-title">Product 3</h5>
-                <p class="card-text">A brief description of Product 3.</p>
+                <h5 class="card-title">Tilly Cooking Fat</h5>
+                <p class="card-text">Tilly is made from pure and naturally refined vegetable palm oil. This semi-solid white cooking fat is a combination of a quality product with an economical pricing, giving our customers value for their money.</p>
+                <p class="card-text"><strong>Price: $15.99</strong></p>
               </div>
               <div class="card-footer">
-                <a href="#" class="btn btn-primary">Buy Now</a>
+                <input type="number" id="quantity-tilly-cooking-fat" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
+                <a href="#" class="btn btn-primary" onclick="addToCart('Tilly Cooking Fat', 'Tilly is made from pure and naturally refined vegetable palm oil. This semi-solid white cooking fat is a combination of a quality product with an economical pricing, giving our customers value for their money.', 15.99, document.getElementById('quantity-tilly-cooking-fat').value)">Add to Cart</a>
               </div>
             </div>
           </div>
