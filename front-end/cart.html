@@ -104,6 +104,21 @@
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+      // Function to add item to cart
+      function addToCart(item) {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingItemIndex = cart.findIndex(cartItem => cartItem.id === item.id);
+
+        if (existingItemIndex !== -1) {
+          cart[existingItemIndex].quantity += item.quantity;
+        } else {
+          cart.push(item);
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCartItems();
+      }
+
       // Function to render cart items
       function renderCartItems() {
         const cartItemsContainer = document.getElementById('cart-items');

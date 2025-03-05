@@ -104,37 +104,40 @@
         <div class="row row-cols-1 row-cols-md-3 g-4">
           <div class="col">
             <div class="card h-100">
-              <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product 1">
+              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\beverages\coca_cola_coke_zero_500ml.jpg" class="card-img-top" alt="Product 1">
               <div class="card-body">
-                <h5 class="card-title">Product 1</h5>
-                <p class="card-text">A brief description of Product 1.</p>
+                <h5 class="card-title">Coca_Cola Coke Zero 500ml</h5>
+                <p class="card-text">Sugarless cola.</p>
               </div>
               <div class="card-footer">
-                <a href="#" class="btn btn-primary">Buy Now</a>
+                <input type="number" class="form-control mb-2" value="1" min="1" id="quantity-coca-cola">
+                <a href="#" class="btn btn-primary" onclick="addToCart('Coca_Cola Coke Zero 500ml', 'Sugarless cola.', 1.50, document.getElementById('quantity-coca-cola').value)">Buy Now</a>
               </div>
             </div>
           </div>
           <div class="col">
             <div class="card h-100">
-              <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product 2">
+              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\snacks\cadbury_top_deck_80g.jpg" class="card-img-top" alt="Product 2">
               <div class="card-body">
-                <h5 class="card-title">Product 2</h5>
-                <p class="card-text">A brief description of Product 2.</p>
+                <h5 class="card-title">Cadbury Top Deck 80g</h5>
+                <p class="card-text">Chocolate.</p>
               </div>
               <div class="card-footer">
-                <a href="#" class="btn btn-primary">Buy Now</a>
+                <input type="number" class="form-control mb-2" value="1" min="1" id="quantity-cadbury">
+                <a href="#" class="btn btn-primary" onclick="addToCart('Cadbury Top Deck 80g', 'Chocolate.', 2.00, document.getElementById('quantity-cadbury').value)">Buy Now</a>
               </div>
             </div>
           </div>
           <div class="col">
             <div class="card h-100">
-              <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Product 3">
+              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\food_additives\kapueti_tomato_ketchup_400g.jpg" class="card-img-top" alt="Product 3">
               <div class="card-body">
-                <h5 class="card-title">Product 3</h5>
-                <p class="card-text">A brief description of Product 3.</p>
+                <h5 class="card-title">Kapueti Tomato Ketchup 400g</h5>
+                <p class="card-text">Ketchup.</p>
               </div>
               <div class="card-footer">
-                <a href="#" class="btn btn-primary">Buy Now</a>
+                <input type="number" class="form-control mb-2" value="1" min="1" id="quantity-ketchup">
+                <a href="#" class="btn btn-primary" onclick="addToCart('Kapueti Tomato Ketchup 400g', 'Ketchup.', 3.00, document.getElementById('quantity-ketchup').value)">Buy Now</a>
               </div>
             </div>
           </div>
@@ -165,6 +168,19 @@
             product.style.display = 'none';
           }
         });
+      }
+
+      // Function to add item to cart
+      function addToCart(name, description, price, quantity) {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingItemIndex = cart.findIndex(item => item.name === name);
+        if (existingItemIndex !== -1) {
+          cart[existingItemIndex].quantity += parseInt(quantity);
+        } else {
+          cart.push({ name, description, price, quantity: parseInt(quantity) });
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert('Item added to cart');
       }
     </script>
   </body>

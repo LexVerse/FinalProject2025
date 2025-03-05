@@ -188,7 +188,12 @@
     <script>
       function addToCart(productName, description, price, quantity) {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        cart.push({ name: productName, description: description, price: price, quantity: quantity });
+        const existingItem = cart.find(item => item.name === productName);
+        if (existingItem) {
+          existingItem.quantity = parseInt(existingItem.quantity) + parseInt(quantity);
+        } else {
+          cart.push({ name: productName, description: description, price: price, quantity: quantity });
+        }
         localStorage.setItem('cart', JSON.stringify(cart));
         alert(quantity + ' x ' + productName + ' has been added to your cart at $' + price + ' each.');
       }
