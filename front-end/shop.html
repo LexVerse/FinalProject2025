@@ -87,6 +87,10 @@
       </div>
       <div class="container">
         <h2 class="mb-4">Fats and Oils</h2>
+        <div class="alert alert-success alert-dismissible fade show" id="cart-alert" role="alert" style="display: none;">
+          Item added to cart successfully!
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
         <div class="row row-cols-1 row-cols-md-3 g-4">
           <div class="col">
             <div class="card h-100">
@@ -98,7 +102,7 @@
               </div>
               <div class="card-footer">
                 <input type="number" id="quantity-alpa-cooking-fat" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Alpa Cooking Fat', 'Alpa is a yellow cooking fat manufactured from pure refined natural vegetable palm oil and is an economical choice of deep frying fat.', 5.99, document.getElementById('quantity-alpa-cooking-fat').value)">Add to Cart</a>
+                <button class="btn btn-primary" onclick="addToCart('Alpa Cooking Fat', 'Alpa is a yellow cooking fat manufactured from pure refined natural vegetable palm oil and is an economical choice of deep frying fat.', 5.99, document.getElementById('quantity-alpa-cooking-fat').value)">Add to Cart</button>
               </div>
             </div>
           </div>
@@ -112,7 +116,7 @@
               </div>
               <div class="card-footer">
                 <input type="number" id="quantity-kasuku-cooking-fat" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Kasuku Cooking Fat', 'Kasuku, East Africa’s most popular cooking fat, is a pure white cooking fat manufactured using refined natural vegetable palm oil. You will enjoy cooking with Kasuku’s soft and smooth texture.', 10.99, document.getElementById('quantity-kasuku-cooking-fat').value)">Add to Cart</a>
+                <button class="btn btn-primary" onclick="addToCart('Kasuku Cooking Fat', 'Kasuku, East Africa’s most popular cooking fat, is a pure white cooking fat manufactured using refined natural vegetable palm oil. You will enjoy cooking with Kasuku’s soft and smooth texture.', 10.99, document.getElementById('quantity-kasuku-cooking-fat').value)">Add to Cart</button>
               </div>
             </div>
           </div>
@@ -126,7 +130,7 @@
               </div>
               <div class="card-footer">
                 <input type="number" id="quantity-tilly-cooking-fat" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Tilly Cooking Fat', 'Tilly is made from pure and naturally refined vegetable palm oil. This semi-solid white cooking fat is a combination of a quality product with an economical pricing, giving our customers value for their money.', 15.99, document.getElementById('quantity-tilly-cooking-fat').value)">Add to Cart</a>
+                <button class="btn btn-primary" onclick="addToCart('Tilly Cooking Fat', 'Tilly is made from pure and naturally refined vegetable palm oil. This semi-solid white cooking fat is a combination of a quality product with an economical pricing, giving our customers value for their money.', 15.99, document.getElementById('quantity-tilly-cooking-fat').value)">Add to Cart</button>
               </div>
             </div>
           </div>
@@ -143,5 +147,29 @@
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Function to add item to cart
+      function addToCart(name, description, price, quantity) {
+        quantity = parseInt(quantity);
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingItemIndex = cart.findIndex(cartItem => cartItem.name === name);
+
+        if (existingItemIndex !== -1) {
+          cart[existingItemIndex].quantity += quantity;
+        } else {
+          cart.push({ name, description, price, quantity });
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        console.log(cart);
+
+        // Show alert
+        const alert = document.getElementById('cart-alert');
+        alert.style.display = 'block';
+        setTimeout(() => {
+          alert.style.display = 'none';
+        }, 3000);
+      }
+    </script>
   </body>
 </html>
