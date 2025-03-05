@@ -13,13 +13,16 @@
     
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <!-- ...existing code... -->
+
     </nav>
 
     <!-- Checkout Section -->
     <section class="py-5">
       <div class="container">
         <h2 class="mb-4">Checkout</h2>
+        <div id="orderAlert" class="alert alert-success d-none" role="alert">
+          Your order has been placed successfully!
+        </div>
         <form id="checkoutForm">
           <div class="mb-3">
             <label for="fullName" class="form-label">Full Name</label>
@@ -61,7 +64,20 @@
 
     <!-- Footer -->
     <footer class="bg-primary text-white py-4">
-      <!-- ...existing code... -->
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h5>Silver Springs Supermarket</h5>
+            <p>© 2023 Silver Springs Supermarket. All Rights Reserved.</p>
+          </div>
+          <div class="col-md-6">
+            <h5>Links</h5>
+            <ul>
+              <li><a href="./home.html" class="text-white">Home</a></li>
+              <li><a href="./shop.html" class="text-white">Shop</a></li>
+              <li><a href="./about_us.html" class="text-white">About Us</a></li>
+              <li><a href="./contact.html" class="text-white text-decoration-none">Contact</a></li>
+            </ul>
     </footer>
 
     <!-- Bootstrap Bundle with Popper -->
@@ -69,7 +85,7 @@
     <script>
       document.getElementById('checkoutForm').addEventListener('submit', function(event) {
         event.preventDefault();
-        alert('Your order has been placed!');
+        document.getElementById('orderAlert').classList.remove('d-none');
         // Optionally, you can add code here to handle the form submission
       });
     </script>
