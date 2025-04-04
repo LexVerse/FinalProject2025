@@ -18,7 +18,8 @@ export function register(fname, lname, email, password, address, callback) {
             console.log(result.affectedRows + " record(s) updated");
             callback(null, result);
         });
-
+        
+        /*
         con.end(function(err) {
             if (err) {
                 console.error('Error closing connection: ' + err.stack);
@@ -26,6 +27,7 @@ export function register(fname, lname, email, password, address, callback) {
             }
             console.log('Database connection closed.');
         });
+        */
     });
 };
 

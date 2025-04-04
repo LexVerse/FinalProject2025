@@ -38,18 +38,7 @@ app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });
 
-// Run the batch file
-exec('server.bat', (error, stdout, stderr) => {
-    if (error) {
-        console.error(`Error executing batch file: ${error.message}`);
-        return;
-    }
-    if (stderr) {
-        console.error(`Batch file stderr: ${stderr}`);
-        return;
-    }
-    console.log(`Batch file stdout: ${stdout}`);
-});
+
 
 /*
 // Example of closing the connection
