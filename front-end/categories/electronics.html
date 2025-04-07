@@ -87,91 +87,9 @@
     <section class="py-5">
       <div class="container">
         <h2 class="mb-4">Electronics</h2>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-          <div class="col">
-            <div class="card h-100">
-              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\electronics\hisense_40in_led_smart_tv.jpg" class="card-img-top" alt="Product 1">
-              <div class="card-body">
-                <h5 class="card-title">Hisense 40 Inch Fhd Led Smart Tv 40A4G-H-K</h5>
-                <p class="card-text">Smart TV.</p>
-                <p class="card-text"><strong>Price: $5.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-product-1" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Hisense 40 Inch Fhd Led Smart Tv 40A4G-H-K', 'Smart TV.', 5.99, document.getElementById('quantity-product-1').value)">Add to Cart</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\electronics\mika_2_door_fridge.jpg" class="card-img-top" alt="Product 2">
-              <div class="card-body">
-                <h5 class="card-title">Mika 2-Door Fridge</h5>
-                <p class="card-text">Two door fridge.</p>
-                <p class="card-text"><strong>Price: $10.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-product-2" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Mika 2-Door Fridge', 'Two door fridge.', 10.99, document.getElementById('quantity-product-2').value)">Add to Cart</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\electronics\mika_s_cooker.png" class="card-img-top" alt="Product 3">
-              <div class="card-body">
-                <h5 class="card-title">Mika S-Cooker</h5>
-                <p class="card-text">Stove cooker.</p>
-                <p class="card-text"><strong>Price: $15.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-product-3" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Mika S-Cooker', 'Stove cooker.', 15.99, document.getElementById('quantity-product-3').value)">Add to Cart</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\electronics\ramtons_electric_p_cooker.jpg" class="card-img-top" alt="Product 4">
-              <div class="card-body">
-                <h5 class="card-title">Ramtons Electric P-Cooker</h5>
-                <p class="card-text">Pressure cooker.</p>
-                <p class="card-text"><strong>Price: $20.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-product-4" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Ramtons Electric P-Cooker', 'Pressure cooker.', 20.99, document.getElementById('quantity-product-4').value)">Add to Cart</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\electronics\ramtons_hot_cold_dispenser.jpg" class="card-img-top" alt="Product 5">
-              <div class="card-body">
-                <h5 class="card-title">Ramtons Hot-Cold Dispenser</h5>
-                <p class="card-text">Water dispenser.</p>
-                <p class="card-text"><strong>Price: $25.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-product-5" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Ramtons Hot-Cold Dispenser', 'Water dispenser.', 25.99, document.getElementById('quantity-product-5').value)">Add to Cart</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\electronics\starlink_mini_kit.jpg" class="card-img-top" alt="Product 6">
-              <div class="card-body">
-                <h5 class="card-title">Starlink Mini Kit</h5>
-                <p class="card-text">Starlink Wi-Fi setup kit.</p>
-                <p class="card-text"><strong>Price: $30.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-product-6" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Starlink Mini Kit', 'Starlink Wi-Fi setup kit.', 30.99, document.getElementById('quantity-product-6').value)">Add to Cart</a>
-              </div>
-            </div>
-          </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="products-container">
+          <!-- Product cards will be dynamically inserted here -->
+          
         </div>
       </div>
     </section>
@@ -197,6 +115,42 @@
         localStorage.setItem('cart', JSON.stringify(cart));
         alert(quantity + ' x ' + productName + ' has been added to your cart at $' + price + ' each.');
       }
+
+      // Fetch and display electronics products from the API
+      async function fetchProducts() {
+        try {
+          const response = await fetch('http://localhost:3000/api/products?category=electronics');
+          const products = await response.json();
+          const container = document.getElementById('products-container');
+          container.innerHTML = ''; // Clear existing content
+          products.forEach(product => {
+            if (product.category_name === 'Electronics') {
+              const productCard = `
+                <div class="col">
+                  <div class="card h-100">
+                    <img src="C:/Users/USER/OneDrive/Documents/GitHub/FinalProject2025/${product.image_path}" class="card-img-top" alt="${product.name}">
+                    <div class="card-body">
+                      <h5 class="card-title">${product.name}</h5>
+                      <p class="card-text">${product.description}</p>
+                      <p class="card-text"><strong>Price: $${product.price}</strong></p>
+                    </div>
+                    <div class="card-footer">
+                      <input type="number" class="form-control mb-2" value="1" min="1" id="quantity-${product.id}">
+                      <a href="#" class="btn btn-primary" onclick="addToCart('${product.name}', '${product.description}', ${product.price}, document.getElementById('quantity-${product.id}').value)">Add to Cart</a>
+                    </div>
+                  </div>
+                </div>
+              `;
+              container.innerHTML += productCard;
+            }
+          });
+        } catch (error) {
+          console.error('Error fetching products:', error);
+        }
+      }
+
+      // Call fetchProducts on page load
+      document.addEventListener('DOMContentLoaded', fetchProducts);
     </script>
   </body>
 </html>

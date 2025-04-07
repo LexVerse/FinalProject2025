@@ -84,92 +84,9 @@
     <section class="py-5">
       <div class="container">
         <h2 class="mb-4">Beverages</h2>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-          <div class="col">
-            <div class="card h-100">
-              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\beverages\coca_cola_coke_zero_500ml.jpg" class="card-img-top" alt="Product 1">
-              <div class="card-body">
-                <h5 class="card-title">Coca-Cola Coke Zero 500ml</h5>
-                <p class="card-text">Coca-Cola without sugar.</p>
-                <p class="card-text"><strong>Price: $5.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-product-1" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Coca-Cola Coke Zero 500ml', 'Coca-Cola without sugar.', 5.99, document.getElementById('quantity-product-1').value)">Add to Cart</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\beverages\minute_maid_pulpy_orange_1l.jpg" class="card-img-top" alt="Product 2">
-              <div class="card-body">
-                <h5 class="card-title">Minute Maid Pulpy Orange 1L</h5>
-                <p class="card-text">Minute maid juice.</p>
-                <p class="card-text"><strong>Price: $10.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-product-2" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Minute Maid Pulpy Orange 1L', 'Minute maid juice.', 10.99, document.getElementById('quantity-product-2').value)">Add to Cart</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\beverages\nescafe_classic_jar_50g.jpg" class="card-img-top" alt="Product 3">
-              <div class="card-body">
-                <h5 class="card-title">Nescafe Classic Jar 50g</h5>
-                <p class="card-text">Nescafe coffee.</p>
-                <p class="card-text"><strong>Price: $15.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-product-3" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Nescafe Classic Jar 50g', 'Nescafe coffee.', 15.99, document.getElementById('quantity-product-3').value)">Add to Cart</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\beverages\nestle_milo_tin_400g.jpg" class="card-img-top" alt="Product 4">
-              <div class="card-body">
-                <h5 class="card-title">Nestle Milo Tin 400g</h5>
-                <p class="card-text">Milo drinking chocolate.</p>
-                <p class="card-text"><strong>Price: $8.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-product-4" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Nestle Milo Tin 400g', 'Milo drinking chocolate.', 8.99, document.getElementById('quantity-product-4').value)">Add to Cart</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\beverages\quencher_drinking_water_500ml.jpg" class="card-img-top" alt="Product 5">
-              <div class="card-body">
-                <h5 class="card-title">Quencher Drinking Water 500ml</h5>
-                <p class="card-text">Drinking water.</p>
-                <p class="card-text"><strong>Price: $12.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-product-5" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Quencher Drinking Water 500ml', 'Drinking water.', 12.99, document.getElementById('quantity-product-5').value)">Add to Cart</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\beverages\red_bull_energy_drink_4pack.jpg" class="card-img-top" alt="Product 6">
-              <div class="card-body">
-                <h5 class="card-title">Red Bull Energy Drink 4 Pack</h5>
-                <p class="card-text">4 energy drinks in one pack.</p>
-                <p class="card-text"><strong>Price: $18.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-product-6" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Red Bull Energy Drink 4 Pack', '4 energy drinks in one pack.', 18.99, document.getElementById('quantity-product-6').value)">Add to Cart</a>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="products-container">
+          <!-- Product cards will be dynamically inserted here -->
+          
       </div>
     </section>
 
@@ -194,6 +111,40 @@
         localStorage.setItem('cart', JSON.stringify(cart));
         alert(quantity + ' x ' + productName + ' has been added to your cart at $' + price + ' each.');
       }
+
+      async function fetchProducts() {
+        try {
+          const response = await fetch('http://localhost:3000/api/products');
+          const products = await response.json();
+          const container = document.getElementById('products-container');
+          container.innerHTML = ''; // Clear existing content
+          products.forEach(product => {
+            if (product.category_name === 'Beverages') {
+              const productCard = `
+                <div class="col">
+                  <div class="card h-100">
+                    <img src="C:/Users/USER/OneDrive/Documents/GitHub/FinalProject2025/${product.image_path}" class="card-img-top" alt="${product.name}">
+                    <div class="card-body">
+                      <h5 class="card-title">${product.name}</h5>
+                      <p class="card-text">${product.description}</p>
+                      <p class="card-text"><strong>Price: $${product.price}</strong></p>
+                    </div>
+                    <div class="card-footer">
+                      <input type="number" class="form-control mb-2" value="1" min="1" id="quantity-${product.id}">
+                      <a href="#" class="btn btn-primary" onclick="addToCart('${product.name}', '${product.description}', ${product.price}, document.getElementById('quantity-${product.id}').value)">Add to Cart</a>
+                    </div>
+                  </div>
+                </div>
+              `;
+              container.innerHTML += productCard;
+            }
+          });
+        } catch (error) {
+          console.error('Error fetching products:', error);
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', fetchProducts);
     </script>
   </body>
 </html>

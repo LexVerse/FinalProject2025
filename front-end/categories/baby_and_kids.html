@@ -87,91 +87,8 @@
     <section class="py-5">
       <div class="container">
         <h2 class="mb-4">Baby & Kids</h2>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-          <div class="col">
-            <div class="card h-100">
-              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\baby_and_kids\aryuv_baby_wipes.jpg" class="card-img-top" alt="Product 1">
-              <div class="card-body">
-                <h5 class="card-title">Aryuv Baby Wipes</h5>
-                <p class="card-text">Baby wipes.</p>
-                <p class="card-text"><strong>Price: $5.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-product-1" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Aryuv Baby Wipes', 'Baby wipes.', 5.99, document.getElementById('quantity-product-1').value)">Add to Cart</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\baby_and_kids\johnsons_baby_lotion_soap.png" class="card-img-top" alt="Product 2">
-              <div class="card-body">
-                <h5 class="card-title">Johnson's Baby Lotion Soap</h5>
-                <p class="card-text">Baby lotion Soap.</p>
-                <p class="card-text"><strong>Price: $10.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-product-2" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Johnson\'s Baby Lotion Soap', 'Baby lotion Soap.', 10.99, document.getElementById('quantity-product-2').value)">Add to Cart</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\baby_and_kids\medela_breast_milk_bottle.jpg" class="card-img-top" alt="Product 3">
-              <div class="card-body">
-                <h5 class="card-title">Medela Breast Milk Bottle</h5>
-                <p class="card-text">Breast milk bottle.</p>
-                <p class="card-text"><strong>Price: $15.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-product-3" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Medela Breast Milk Bottle', 'Breast milk bottle.', 15.99, document.getElementById('quantity-product-3').value)">Add to Cart</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\baby_and_kids\huggies_diapers_size_2.jpg" class="card-img-top" alt="Product 4">
-              <div class="card-body">
-                <h5 class="card-title">Huggies Diapers Size 2</h5>
-                <p class="card-text">Diapers size 2.</p>
-                <p class="card-text"><strong>Price: $20.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-product-4" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Huggies Diapers Size 2', 'Diapers size 2.', 20.99, document.getElementById('quantity-product-4').value)">Add to Cart</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\baby_and_kids\huggies_diapers_size_3.jpg" class="card-img-top" alt="Product 5">
-              <div class="card-body">
-                <h5 class="card-title">Huggies Diapers Size 3</h5>
-                <p class="card-text">Diapers size 3.</p>
-                <p class="card-text"><strong>Price: $25.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-product-5" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Huggies Diapers Size 3', 'Diapers size 3.', 25.99, document.getElementById('quantity-product-5').value)">Add to Cart</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\baby_and_kids\huggies_diapers_size_4.jpg" class="card-img-top" alt="Product 6">
-              <div class="card-body">
-                <h5 class="card-title">Huggies Diapers Size 4</h5>
-                <p class="card-text">Diapers size 4.</p>
-                <p class="card-text"><strong>Price: $30.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-product-6" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Huggies Diapers Size 4', 'Diapers size 4.', 30.99, document.getElementById('quantity-product-6').value)">Add to Cart</a>
-              </div>
-            </div>
-          </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="products-container">
+          <!-- Product cards will be dynamically inserted here -->
         </div>
       </div>
     </section>
@@ -197,6 +114,40 @@
         localStorage.setItem('cart', JSON.stringify(cart));
         alert(quantity + ' x ' + productName + ' has been added to your cart at $' + price + ' each.');
       }
+
+      async function fetchProducts() {
+        try {
+          const response = await fetch('http://localhost:3000/api/products');
+          const products = await response.json();
+          const container = document.getElementById('products-container');
+          container.innerHTML = ''; // Clear existing content
+          products.forEach(product => {
+            if (product.category_name === 'Baby & Kids') {
+              const productCard = `
+                <div class="col">
+                  <div class="card h-100">
+                    <img src="C:/Users/USER/OneDrive/Documents/GitHub/FinalProject2025/${product.image_path}" class="card-img-top" alt="${product.name}">
+                    <div class="card-body">
+                      <h5 class="card-title">${product.name}</h5>
+                      <p class="card-text">${product.description}</p>
+                      <p class="card-text"><strong>Price: $${product.price}</strong></p>
+                    </div>
+                    <div class="card-footer">
+                      <input type="number" class="form-control mb-2" value="1" min="1" id="quantity-${product.id}">
+                      <a href="#" class="btn btn-primary" onclick="addToCart('${product.name}', '${product.description}', ${product.price}, document.getElementById('quantity-${product.id}').value)">Add to Cart</a>
+                    </div>
+                  </div>
+                </div>
+              `;
+              container.innerHTML += productCard;
+            }
+          });
+        } catch (error) {
+          console.error('Error fetching products:', error);
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', fetchProducts);
     </script>
   </body>
 </html>

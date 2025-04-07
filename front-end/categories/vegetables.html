@@ -84,91 +84,8 @@
     <section class="py-5">
       <div class="container">
         <h2 class="mb-4">Vegetables</h2>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-          <div class="col">
-            <div class="card h-100">
-              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\vegetables\basil_herbs.jpg" class="card-img-top" alt="Product 1">
-              <div class="card-body">
-                <h5 class="card-title">Basil Herbs</h5>
-                <p class="card-text">Basil Herbs.</p>
-                <p class="card-text"><strong>Price: $5.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-product-1" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Basil Herbs', 'Basil Herbs.', 5.99, document.getElementById('quantity-product-1').value)">Add to Cart</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\vegetables\fresh_cabbage.jpg" class="card-img-top" alt="Product 2">
-              <div class="card-body">
-                <h5 class="card-title">Fresh Cabbage</h5>
-                <p class="card-text">Fresh cabbage.</p>
-                <p class="card-text"><strong>Price: $10.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-product-2" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Fresh Cabbage', 'Fresh cabbage.', 10.99, document.getElementById('quantity-product-2').value)">Add to Cart</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\vegetables\fresh_garlic.jpg" class="card-img-top" alt="Product 3">
-              <div class="card-body">
-                <h5 class="card-title">Fresh Garlic</h5>
-                <p class="card-text">Fresh garlic.</p>
-                <p class="card-text"><strong>Price: $15.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-product-3" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Fresh Garlic', 'Fresh garlic.', 15.99, document.getElementById('quantity-product-3').value)">Add to Cart</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\vegetables\kunde_bunch.jpg" class="card-img-top" alt="Product 4">
-              <div class="card-body">
-                <h5 class="card-title">Kunde Bunch</h5>
-                <p class="card-text">Kunde Bunch.</p>
-                <p class="card-text"><strong>Price: $7.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-product-4" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Kunde Bunch', 'Kunde Bunch.', 7.99, document.getElementById('quantity-product-4').value)">Add to Cart</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\vegetables\pigeon_peas.jpg" class="card-img-top" alt="Product 5">
-              <div class="card-body">
-                <h5 class="card-title">Pigeon Peas</h5>
-                <p class="card-text">Pigeon peas.</p>
-                <p class="card-text"><strong>Price: $12.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-product-5" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Pigeon Peas', 'Pigeon peas.', 12.99, document.getElementById('quantity-product-5').value)">Add to Cart</a>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="C:\Users\USER\OneDrive\Documents\GitHub\FinalProject2025\resources\vegetables\potatoes.jpg" class="card-img-top" alt="Product 6">
-              <div class="card-body">
-                <h5 class="card-title">Potatoes</h5>
-                <p class="card-text">Potatoes.</p>
-                <p class="card-text"><strong>Price: $9.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-product-6" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <a href="#" class="btn btn-primary" onclick="addToCart('Potatoes', 'Potatoes.', 9.99, document.getElementById('quantity-product-6').value)">Add to Cart</a>
-              </div>
-            </div>
-          </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="products-container">
+          <!-- Product cards will be dynamically inserted here -->
         </div>
       </div>
     </section>
@@ -194,6 +111,40 @@
         localStorage.setItem('cart', JSON.stringify(cart));
         alert(quantity + ' x ' + productName + ' has been added to your cart at $' + price + ' each.');
       }
+
+      async function fetchProducts() {
+        try {
+          const response = await fetch('http://localhost:3000/api/products');
+          const products = await response.json();
+          const container = document.getElementById('products-container');
+          container.innerHTML = ''; // Clear existing content
+          products.forEach(product => {
+            if (product.category_name === 'Vegetables') {
+              const productCard = `
+                <div class="col">
+                  <div class="card h-100">
+                    <img src="C:/Users/USER/OneDrive/Documents/GitHub/FinalProject2025/${product.image_path}" class="card-img-top" alt="${product.name}">
+                    <div class="card-body">
+                      <h5 class="card-title">${product.name}</h5>
+                      <p class="card-text">${product.description}</p>
+                      <p class="card-text"><strong>Price: $${product.price}</strong></p>
+                    </div>
+                    <div class="card-footer">
+                      <input type="number" class="form-control mb-2" value="1" min="1" id="quantity-${product.id}">
+                      <a href="#" class="btn btn-primary" onclick="addToCart('${product.name}', '${product.description}', ${product.price}, document.getElementById('quantity-${product.id}').value)">Add to Cart</a>
+                    </div>
+                  </div>
+                </div>
+              `;
+              container.innerHTML += productCard;
+            }
+          });
+        } catch (error) {
+          console.error('Error fetching products:', error);
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', fetchProducts);
     </script>
   </body>
 </html>

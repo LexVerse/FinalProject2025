@@ -86,54 +86,14 @@
         <h1 class="mb-4">Shop</h1>
       </div>
       <div class="container">
-        <h2 class="mb-4">Fats and Oils</h2>
+        <h2 class="mb-4">All Products</h2>
+        <p class="lead">Browse our wide selection of products.</p>
         <div class="alert alert-success alert-dismissible fade show" id="cart-alert" role="alert" style="display: none;">
           Item added to cart successfully!
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-          <div class="col">
-            <div class="card h-100">
-              <img src="../resources/fats_and_oils/alpa_cooking_fat.avif" class="card-img-top" alt="Alpa Cooking Fat">
-              <div class="card-body">
-                <h5 class="card-title">Alpa Cooking Fat</h5>
-                <p class="card-text">Alpa is a yellow cooking fat manufactured from pure refined natural vegetable palm oil and is an economical choice of deep frying fat.</p>
-                <p class="card-text"><strong>Price: $5.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-alpa-cooking-fat" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <button class="btn btn-primary" onclick="addToCart('Alpa Cooking Fat', 'Alpa is a yellow cooking fat manufactured from pure refined natural vegetable palm oil and is an economical choice of deep frying fat.', 5.99, document.getElementById('quantity-alpa-cooking-fat').value)">Add to Cart</button>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="../resources/fats_and_oils/kasuku_cooking_fat.avif" class="card-img-top" alt="Kasuku Cooking Fat">
-              <div class="card-body">
-                <h5 class="card-title">Kasuku Cooking Fat</h5>
-                <p class="card-text">Kasuku, East Africa’s most popular cooking fat, is a pure white cooking fat manufactured using refined natural vegetable palm oil. You will enjoy cooking with Kasuku’s soft and smooth texture.</p>
-                <p class="card-text"><strong>Price: $10.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-kasuku-cooking-fat" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <button class="btn btn-primary" onclick="addToCart('Kasuku Cooking Fat', 'Kasuku, East Africa’s most popular cooking fat, is a pure white cooking fat manufactured using refined natural vegetable palm oil. You will enjoy cooking with Kasuku’s soft and smooth texture.', 10.99, document.getElementById('quantity-kasuku-cooking-fat').value)">Add to Cart</button>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-100">
-              <img src="../resources/fats_and_oils/tilly_cooking_fat.avif" class="card-img-top" alt="Tilly Cooking Fat">
-              <div class="card-body">
-                <h5 class="card-title">Tilly Cooking Fat</h5>
-                <p class="card-text">Tilly is made from pure and naturally refined vegetable palm oil. This semi-solid white cooking fat is a combination of a quality product with an economical pricing, giving our customers value for their money.</p>
-                <p class="card-text"><strong>Price: $15.99</strong></p>
-              </div>
-              <div class="card-footer">
-                <input type="number" id="quantity-tilly-cooking-fat" class="form-control mb-2" placeholder="Quantity" min="1" value="1">
-                <button class="btn btn-primary" onclick="addToCart('Tilly Cooking Fat', 'Tilly is made from pure and naturally refined vegetable palm oil. This semi-solid white cooking fat is a combination of a quality product with an economical pricing, giving our customers value for their money.', 15.99, document.getElementById('quantity-tilly-cooking-fat').value)">Add to Cart</button>
-              </div>
-            </div>
-          </div>
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="products-container">
+          <!-- Product cards will be dynamically inserted here by JavaScript -->
         </div>
       </div>
     </section>
@@ -170,6 +130,40 @@
           alert.style.display = 'none';
         }, 3000);
       }
+
+      // Fetch and display all products from the API
+      async function fetchProducts() {
+        try {
+          const response = await fetch('http://localhost:3000/api/products');
+          const products = await response.json();
+          const container = document.getElementById('products-container');
+          container.innerHTML = ''; // Clear existing content
+          products.forEach(product => {
+            const productCard = `
+              <div class="col">
+                <div class="card h-100">
+                  <img src="C:/Users/USER/OneDrive/Documents/GitHub/FinalProject2025/${product.image_path}" class="card-img-top" alt="${product.name}">
+                  <div class="card-body">
+                    <h5 class="card-title">${product.name}</h5>
+                    <p class="card-text">${product.description}</p>
+                    <p class="card-text"><strong>Price: $${product.price}</strong></p>
+                  </div>
+                  <div class="card-footer">
+                    <input type="number" class="form-control mb-2" value="1" min="1" id="quantity-${product.id}">
+                    <button class="btn btn-primary" onclick="addToCart('${product.name}', '${product.description}', ${product.price}, document.getElementById('quantity-${product.id}').value)">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+            `;
+            container.innerHTML += productCard;
+          });
+        } catch (error) {
+          console.error('Error fetching products:', error);
+        }
+      }
+
+      // Call fetchProducts on page load
+      document.addEventListener('DOMContentLoaded', fetchProducts);
     </script>
   </body>
 </html>

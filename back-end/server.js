@@ -4,7 +4,7 @@ import { register } from './register.js';
 import { login } from './login.js'; // Import the login function
 import { exec } from 'child_process'; // Import the exec function from child_process
 import { closeConnection } from './connection.js'; // Import the closeConnection function
-
+import { con } from './connection.js'; // Import the database connection
 
 const app = express();
 app.use(cors()); // Enable CORS
@@ -30,6 +30,17 @@ app.post('/login', (req, res) => {
             res.status(401).send('Invalid email or password');
         } else {
             res.status(200).send('Login successful');
+        }
+    });
+});
+
+app.get('/api/products', (req, res) => {
+    const query = 'SELECT id, name, description, price, image_path, category_name FROM products';
+    con.query(query, (err, results) => {
+        if (err) {
+            res.status(500).send('Error fetching products');
+        } else {
+            res.status(200).json(results);
         }
     });
 });
